@@ -53,8 +53,8 @@ a {
   color: #9064d6;
   font-size: 22px;
 }
-.conditions {
-  text-align: center;
+ul {
+  list-style-type: none;
   font-size: 18px;
   color: #3a444e;
   font-family: "Inconsolata", monospace;
