@@ -39,26 +39,23 @@
         />
         <input type="submit" id="submit-button" />
       </form>
-      <h1>Currently in Montreal</h1>
+
+      <h1>Currently in <span id="city"></span></h1>
       <div id="day-time"></div>
       <div class="row" id="current-conditions">
         <div class="col-lg-3"></div>
         <div class="col-lg-3">
           <p class="temp">
-            <span class="rightNow" id="current-temperature">8°</span>
-            <a href="" id="clesius" class="unit">C </a>
-            <span class="slash">/</span>
-            <a href="" id="farenheit" class="unit">F</a>
-            <br />
-            <i class="fas fa-cloud cloud" id="current-cloud"></i>
+            <span class="rightNow" id="current-temperature"></span>
           </p>
         </div>
         <div class="col-lg-3">
-          <span class="conditions">
-            <span id="feels-like">Feels Like: 6°</span> <br />
-            <span id="humidity">Humidity 58%</span> <br />
-            <span id="wind-speed"> Wind Speed: 3 km/h </span>
-          </span>
+          <ul class="conditions">
+            <li><span id="description"></span></li>
+            <li>Feels Like: <span id="feels-like"> </span> °</li>
+            <li>Humidity: <span id="humidity"></span>%</li>
+            <li>Wind Speed: <span id="wind-speed"> </span>km/h</li>
+          </ul>
         </div>
       </div>
       <div class="row gx-2">
