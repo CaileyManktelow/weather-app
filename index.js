@@ -1,17 +1,18 @@
-function changeCity(event) {
-  event.preventDefault();
-  let searchCity = document.querySelector("#change-city").value;
+function search(city) {
   let apiKey = "11d5388f18b558800b7dfa9265df5c52";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(displayCurrentWeather);
 }
-//Display a city by default
+function handleSubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#change-city").value;
+  search(city);
+}
 //Add current location button
 function displayCurrentWeather(response) {
-  console.log(response);
   let cityName = (document.querySelector("#city").innerHTML =
     response.data.name);
-  console.log(cityName);
+
   let currentTemperature = (document.querySelector(
     "#current-temperature"
   ).innerHTML = Math.round(response.data.main.temp));
@@ -28,9 +29,10 @@ function displayCurrentWeather(response) {
     response.data.weather[0].description);
 }
 
-let search = document.querySelector("#search");
-search.addEventListener("submit", changeCity);
+let submit = document.querySelector("#search");
+submit.addEventListener("submit", handleSubmit);
 
+search("montreal");
 function displayCurrentDayTime() {
   let now = new Date();
   let day = now.getDay();
