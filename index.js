@@ -48,6 +48,14 @@ function displayCurrentDayTime() {
   let dayTime = document.querySelector("#day-time");
   let today = days[day];
   let time = `${hour}:${minute}`;
+  if (hour < 10) {
+    let hour = `0${hour}`;
+  }
+  if (minute < 10) {
+    let minute = `0${minute}`;
+  } else {
+    let time = `${hour}:${minute}`;
+  }
   dayTime.innerHTML = `${today} ${time}`;
 }
 
