@@ -27,6 +27,11 @@ function displayCurrentWeather(response) {
   ));
   let description = (document.querySelector("#description").innerHTML =
     response.data.weather[0].description);
+  let currentIconElement = document.querySelector("#current-icon");
+  currentIconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 let submit = document.querySelector("#search");
