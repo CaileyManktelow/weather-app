@@ -105,7 +105,7 @@ ul {
   cursor: text;
 }
 
-#day-time {
+.dayTime {
   color: #9064d6;
   font-size: 24px;
   font-family: "Raleway", sans-serif;
