@@ -8,11 +8,9 @@ function handleSubmit(event) {
   let city = document.querySelector("#change-city").value;
   searchCity(city);
 }
-//Add current location button
 function displayCurrentWeather(response) {
   let cityName = (document.querySelector("#city").innerHTML =
     response.data.name);
-
   let currentTemperature = (document.querySelector(
     "#current-temperature"
   ).innerHTML = Math.round(response.data.main.temp));
@@ -55,14 +53,6 @@ function displayCurrentDayTime() {
   let dayTime = document.querySelector("#day-time");
   let today = days[day];
   let time = `${hour}:${minute}`;
-  if (hour < 10) {
-    let hour = `0${hour}`;
-  }
-  if (minute < 10) {
-    let minute = `0${minute}`;
-  } else {
-    let time = `${hour}:${minute}`;
-  }
   dayTime.innerHTML = `${today} ${time}`;
 }
 
