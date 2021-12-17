@@ -27,12 +27,29 @@ h1 {
 a {
   text-decoration: none;
 }
-a:visited {
+.gitHubLink:visited {
   color: #4b3bf7;
 }
 .container {
   background-color: #e4f1fe;
   border-radius: 10px;
+}
+#farenheight,
+#celcius {
+  color: #9064d6;
+  font-size: 18px;
+  font-family: "Raleway", sans-serif;
+}
+
+.celciusAndFarenheight {
+  color: #9064d6;
+  font-size: 18px;
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  top: -20px;
+}
+.celciusAndFarenheight:visited {
+  color: #9064d6;
 }
 #search {
   color: #7990aa;
