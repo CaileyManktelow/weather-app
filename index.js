@@ -57,3 +57,28 @@ function displayCurrentDayTime() {
 }
 
 displayCurrentDayTime();
+
+function toCelcius(event) {
+  event.preventDefault();
+  let searchCity = document.querySelector("#change-city").value;
+  let apiKey = "11d5388f18b558800b7dfa9265df5c52";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayCurrentWeather);
+  let windSpeedUnit = document.querySelector("#speed-unit");
+  windSpeedUnit.innerHTML = " KM/H";
+}
+function toFarenheight(event) {
+  event.preventDefault();
+  let searchCity = document.querySelector("#change-city").value;
+  let apiKey = "11d5388f18b558800b7dfa9265df5c52";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=imperial&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayCurrentWeather);
+  let windSpeedUnit = document.querySelector("#speed-unit");
+  windSpeedUnit.innerHTML = " MPH";
+}
+
+let celciusSelector = document.querySelector("#celcius");
+celciusSelector.addEventListener("click", toCelcius);
+
+let farenheightSelector = document.querySelector("#farenheight");
+farenheightSelector.addEventListener("click", toFarenheight);
