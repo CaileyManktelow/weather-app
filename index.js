@@ -9,20 +9,19 @@ function handleSubmit(event) {
   searchCity(city);
 }
 function displayCurrentWeather(response) {
+  celciusTemperature = response.data.main.temp;
   let cityName = (document.querySelector("#city").innerHTML =
     response.data.name);
   let currentTemperature = (document.querySelector(
     "#current-temperature"
-  ).innerHTML = Math.round(response.data.main.temp));
+  ).innerHTML = Math.round(celciusTemperature));
   let humidity = (document.querySelector("#humidity").innerHTML = Math.round(
     response.data.main.humidity
   ));
   let windSpeed = (document.querySelector("#wind-speed").innerHTML = Math.round(
     response.data.wind.speed
   ));
-  let feelsLike = (document.querySelector("#feels-like").innerHTML = Math.round(
-    response.data.main.feels_like
-  ));
+
   let description = (document.querySelector("#description").innerHTML =
     response.data.weather[0].description);
   let currentIconElement = document.querySelector("#current-icon");
@@ -35,7 +34,6 @@ function displayCurrentWeather(response) {
 let submit = document.querySelector("#search");
 submit.addEventListener("submit", handleSubmit);
 
-searchCity("montreal");
 function displayCurrentDayTime() {
   let now = new Date();
   let day = now.getDay();
@@ -69,16 +67,17 @@ function toCelcius(event) {
 }
 function toFarenheight(event) {
   event.preventDefault();
-  let searchCity = document.querySelector("#change-city").value;
-  let apiKey = "11d5388f18b558800b7dfa9265df5c52";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=imperial&appid=${apiKey}`;
-  axios.get(apiUrl).then(displayCurrentWeather);
+  let temperatureElement = document.querySelector("#current-temperature");
+  let farenheightTemperature = (celciusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(farenheightTemperature);
   let windSpeedUnit = document.querySelector("#speed-unit");
   windSpeedUnit.innerHTML = " MPH";
 }
-
+let celciusTemperature = null;
 let celciusSelector = document.querySelector("#celcius");
 celciusSelector.addEventListener("click", toCelcius);
 
 let farenheightSelector = document.querySelector("#farenheight");
 farenheightSelector.addEventListener("click", toFarenheight);
+
+searchCity("montreal");
