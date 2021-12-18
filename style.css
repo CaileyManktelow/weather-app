@@ -34,6 +34,9 @@ a {
   background-color: #e4f1fe;
   border-radius: 10px;
 }
+.active {
+  text-decoration: underline;
+}
 #farenheight,
 #celcius {
   color: #9064d6;
