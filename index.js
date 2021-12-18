@@ -37,7 +37,7 @@ function displayCurrentDayTime() {
   let now = new Date();
   let day = now.getDay();
   let hour = now.getHours();
-  if (hour > 10) {
+  if (hour < 10) {
     hour = `0${hour}`;
   }
   let minute = now.getMinutes();
