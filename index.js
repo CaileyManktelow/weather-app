@@ -18,9 +18,9 @@ function displayCurrentWeather(response) {
   let humidity = (document.querySelector("#humidity").innerHTML = Math.round(
     response.data.main.humidity
   ));
-  let windSpeed = (document.querySelector("#wind-speed").innerHTML = Math.round(
-    response.data.wind.speed
-  ));
+  km = response.data.wind.speed;
+  let windSpeed = (document.querySelector("#wind-speed").innerHTML =
+    Math.round(km));
   let description = (document.querySelector("#description").innerHTML =
     response.data.weather[0].description);
   let currentIconElement = document.querySelector("#current-icon");
@@ -37,7 +37,14 @@ function displayCurrentDayTime() {
   let now = new Date();
   let day = now.getDay();
   let hour = now.getHours();
+  if (hour > 10) {
+    hour = `0${hour}`;
+  }
   let minute = now.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+
   let days = [
     "Sunday",
     "Monday",
@@ -59,8 +66,7 @@ function toCelcius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#current-temperature");
   temperatureElement.innerHTML = Math.round(celciusTemperature);
-  let windSpeedUnit = document.querySelector("#speed-unit");
-  windSpeedUnit.innerHTML = " KM/H";
+
   farenheightSelector.classList.remove("active");
   celciusSelector.classList.add("active");
 }
@@ -69,12 +75,12 @@ function toFarenheight(event) {
   let temperatureElement = document.querySelector("#current-temperature");
   let farenheightTemperature = (celciusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(farenheightTemperature);
-  let windSpeedUnit = document.querySelector("#speed-unit");
-  windSpeedUnit.innerHTML = " MPH";
+
   celciusSelector.classList.remove("active");
   farenheightSelector.classList.add("active");
 }
 let celciusTemperature = null;
+let km = null;
 let celciusSelector = document.querySelector("#celcius");
 celciusSelector.addEventListener("click", toCelcius);
 
