@@ -44,7 +44,6 @@ function displayCurrentDayTime() {
   if (minute < 10) {
     minute = `0${minute}`;
   }
-
   let days = [
     "Sunday",
     "Monday",
@@ -79,6 +78,28 @@ function toFarenheight(event) {
   celciusSelector.classList.remove("active");
   farenheightSelector.classList.add("active");
 }
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row gx-2">`;
+  let days = ["Thursday", "friday", "Saturday", "Sunday", "Monday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+          <div class="col-lg-2">
+            <div class="forecast">
+              <div class="day">${day}</div>
+              <p class="future">
+                6° <br />
+                <i class="fas fa-cloud cloud"></i>
+              </p>
+            </div>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let celciusTemperature = null;
 let km = null;
 let celciusSelector = document.querySelector("#celcius");
@@ -88,3 +109,4 @@ let farenheightSelector = document.querySelector("#farenheight");
 farenheightSelector.addEventListener("click", toFarenheight);
 
 searchCity("montreal");
+displayForecast();
