@@ -67,7 +67,12 @@ function displayCurrentDayTime() {
   let time = `${hour}:${minute}`;
   dayTime.innerHTML = `${today} ${time}`;
 }
-
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  return days[day];
+}
 displayCurrentDayTime();
 
 function toCelcius(event) {
@@ -88,23 +93,26 @@ function toFarenheight(event) {
   farenheightSelector.classList.add("active");
 }
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row gx-2">`;
-  let days = ["Thursday", "friday", "Saturday", "Sunday", "Monday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
           <div class="col-lg-2">
             <div class="forecast">
-              <div class="day">${day}</div>
+              <div class="day">${formatDay(forecastDay.dt)}</div>
               <p class="future">
-                6° <br />
-                <i class="fas fa-cloud cloud"></i>
+                ${Math.round(forecastDay.temp.max)}° <br />
+                <img src="http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png" />
               </p>
             </div>
           </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
