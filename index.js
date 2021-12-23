@@ -17,18 +17,17 @@ function getForecast(coordinates) {
 }
 
 function displayCurrentWeather(response) {
-  celciusTemperature = response.data.main.temp;
   let cityName = (document.querySelector("#city").innerHTML =
     response.data.name);
   let currentTemperature = (document.querySelector(
     "#current-temperature"
-  ).innerHTML = Math.round(celciusTemperature));
+  ).innerHTML = Math.round(response.data.main.temp));
   let humidity = (document.querySelector("#humidity").innerHTML = Math.round(
     response.data.main.humidity
   ));
-  km = response.data.wind.speed;
-  let windSpeed = (document.querySelector("#wind-speed").innerHTML =
-    Math.round(km));
+  let windSpeed = (document.querySelector("#wind-speed").innerHTML = Math.round(
+    response.data.wind.speed
+  ));
   let description = (document.querySelector("#description").innerHTML =
     response.data.weather[0].description);
   let currentIconElement = document.querySelector("#current-icon");
@@ -75,23 +74,6 @@ function formatDay(timestamp) {
 }
 displayCurrentDayTime();
 
-function toCelcius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temperature");
-  temperatureElement.innerHTML = Math.round(celciusTemperature);
-
-  farenheightSelector.classList.remove("active");
-  celciusSelector.classList.add("active");
-}
-function toFarenheight(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temperature");
-  let farenheightTemperature = (celciusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(farenheightTemperature);
-
-  celciusSelector.classList.remove("active");
-  farenheightSelector.classList.add("active");
-}
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
@@ -117,14 +99,5 @@ function displayForecast(response) {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-
-let celciusTemperature = null;
-let km = null;
-let celciusSelector = document.querySelector("#celcius");
-celciusSelector.addEventListener("click", toCelcius);
-
-let farenheightSelector = document.querySelector("#farenheight");
-farenheightSelector.addEventListener("click", toFarenheight);
-
 searchCity("montreal");
 displayForecast();
