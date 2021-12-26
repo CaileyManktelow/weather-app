@@ -32,7 +32,7 @@
     <div class="container">
       <form id="search">
         <div class="row">
-          <div class="col-5">
+          <div class="col-4">
             <input
               class="form-control"
               type="search"
@@ -54,15 +54,17 @@
         <div class="col-lg-3">
           <p class="temp">
             <span class="rightNow" id="current-temperature"></span>
-            <span class="celciusAndFarenheight">
+              <span class="celciusAndFarenheight">
               °C
             </span>
             <img id="current-icon" src="#" alt="" />
+          <span id="description"></span>
           </p>
         </div>
         <div class="col-lg-3">
           <ul class="conditions">
-            <li><span id="description"></span></li>
+            <li></span></li>
+            <li>Feels like: <span id="feels-like"></span> </li>
             <li>Humidity: <span id="humidity"></span>%</li>
             <li>
               Wind Speed: <span id="wind-speed"> </span
@@ -72,9 +74,6 @@
         </div>
       </div>
       <div id="forecast">
-
-
-          <div class="col-1"></div>
         </div>
       </div>
       <div class="footer">

@@ -17,6 +17,7 @@ function getForecast(coordinates) {
 }
 
 function displayCurrentWeather(response) {
+  console.log(response);
   let cityName = (document.querySelector("#city").innerHTML =
     response.data.name);
   let currentTemperature = (document.querySelector(
@@ -30,6 +31,9 @@ function displayCurrentWeather(response) {
   ));
   let description = (document.querySelector("#description").innerHTML =
     response.data.weather[0].description);
+  let feelsLike = (document.querySelector("#feels-like").innerHTML = Math.round(
+    response.data.main.feels_like
+  ));
   let currentIconElement = document.querySelector("#current-icon");
   currentIconElement.setAttribute(
     "src",
@@ -86,12 +90,14 @@ function displayForecast(response) {
           <div class="col-lg-2">
             <div class="forecast">
               <div class="day">${formatDay(forecastDay.dt)}</div>
-              <p class="future">
-                ${Math.round(forecastDay.temp.max)}° <br />
-                <img src="http://openweathermap.org/img/wn/${
-                  forecastDay.weather[0].icon
-                }@2x.png" />
-              </p>
+             <div id="forecast-icon"><img width=65px src="http://openweathermap.org/img/wn/${
+               forecastDay.weather[0].icon
+             }@2x.png" /> </div>
+               <div class="forecastTemp">
+               ${Math.round(forecastDay.temp.max)}°
+                ${Math.round(forecastDay.temp.min)}° 
+
+              </div>
             </div>
           </div>`;
     }
