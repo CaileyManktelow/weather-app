@@ -25,7 +25,7 @@ footer {
 .container {
   background-color: #c5def8;
   border-radius: 10px;
-  padding: 50px;
+  padding: 45px;
 }
 .dayTime {
   color: #9064d6;
@@ -41,7 +41,7 @@ footer {
   font-size: 50px;
   color: #9064d6;
 }
-.celciusAndFarenheight {
+.unit {
   color: #9064d6;
   font-size: 18px;
   font-family: "Raleway", sans-serif;
